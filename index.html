@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PGP Public Key</title>
+    <title>Identity Verified | PGP Terminal</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="overlay"></div>
+
     <div class="container">
+        <div class="scanline"></div>
+        
         <header>
-            <h1 class="glitch" data-text="ACCESS_GRANTED">ACCESS_GRANTED</h1>
-            <p class="subtitle">User: ******* | Identity: Verified</p>
+            <div class="status">● SESSION_ENCRYPTED_AES_256</div>
+            <h1>Access Granted</h1>
+            <p class="user-id">Identity: hellboy@email.com</p>
         </header>
 
-        <main class="key-card">
-            <div class="card-header">
-                <span class="dot"></span> PGP PUBLIC KEY BLOCK
-            </div>
-            <div class="code-area">
-                <pre id="pgp-key">
------BEGIN PGP PUBLIC KEY BLOCK-----
+        <div class="key-box">
+            <pre id="pgp-key">-----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQGNBGmwJvUBDAC2dHkK84I+wDkMA0V2XG7WWgjw5scbznv7lr4onP2v+6COzjow
 lshrrK56K5OCeiNwIxJjj60rpOH76qOwmu5VIuXnxTBESCzqQmbPqM7KmLxDGbmw
@@ -60,15 +58,13 @@ oJVTaR5qZZd+00j1RJLkIPDiRwDtfnHer8sQhvVlSvVZcG2oqRhtrmli2BZZO85r
 x1dJlilDcnaxTlVsxUoffzfuit56J1ZUC9FBK+QXhqE+6r9GAlKCqMZnC1TRXffz
 sYAJYVCwxQ==
 =FjMQ
------END PGP PUBLIC KEY BLOCK-----
-                </pre>
-            </div>
-            <button class="btn-copy" onclick="copyKey()">COPY_DATA</button>
-        </main>
+-----END PGP PUBLIC KEY BLOCK-----</pre>
+        </div>
+
+        <button class="btn-copy" onclick="copyKey()">[ COPY_TO_BUFFER ]</button>
 
         <footer>
-            <div class="scanline"></div>
-            <p>SYSTEM STATUS: <span class="online">ONLINE</span></p>
+            TIMESTAMP: 2026.03.17_18:15 // CORE_SYNC: ACTIVE
         </footer>
     </div>
 
@@ -77,8 +73,15 @@ sYAJYVCwxQ==
             const keyText = document.getElementById('pgp-key').innerText;
             navigator.clipboard.writeText(keyText);
             const btn = document.querySelector('.btn-copy');
-            btn.innerText = 'COPIED!';
-            setTimeout(() => btn.innerText = 'COPY_DATA', 2000);
+            btn.innerText = '[ DATA_COPIED ]';
+            btn.style.borderColor = '#00ff88';
+            btn.style.color = '#00ff88';
+            
+            setTimeout(() => {
+                btn.innerText = '[ COPY_TO_BUFFER ]';
+                btn.style.borderColor = 'var(--neon-cyan)';
+                btn.style.color = 'var(--neon-cyan)';
+            }, 2000);
         }
     </script>
 </body>
